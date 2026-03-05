@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Henry Fan — ML Research</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:    #0d0d0d;
+  --paper:  #f5f0e8;
+  --cream:  #ede8d8;
+  --red:    #c1121f;
+  --blue:   #2563eb;
+  --violet: #7c3aed;
+  --amber:  #d97706;
+  --teal:   #0a7c6e;
+  --dim:    #5a5a5a;
+  --rule:   2px solid var(--ink);
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  background:var(--paper); color:var(--ink);
+  font-family:'DM Sans',sans-serif; overflow-x:hidden;
+}
+body::after {
+  content:''; position:fixed; inset:0; pointer-events:none; z-index:9999; opacity:.025;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ── MASTHEAD ── */
+.masthead {
+  background:var(--ink); color:var(--paper);
+  border-bottom:5px solid var(--red);
+}
+.mast-top {
+  display:flex; justify-content:space-between; align-items:center;
+  padding:12px 52px; border-bottom:1px solid rgba(255,255,255,.1);
+  font-family:'IBM Plex Mono',monospace; font-size:10px;
+  letter-spacing:.14em; text-transform:uppercase; opacity:.5;
+}
+.mast-main {
+  padding:40px 52px 32px;
+  display:grid; grid-template-columns:1fr auto;
+  gap:40px; align-items:end;
+}
+.mast-label {
+  font-family:'IBM Plex Mono',monospace; font-size:10px;
+  letter-spacing:.22em; text-transform:uppercase;
+  color:var(--red); margin-bottom:14px;
+}
+.mast-name {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(52px,8vw,108px);
+  line-height:.88; letter-spacing:.02em;
+}
+.mast-name span { color:var(--red); }
+.mast-title {
+  font-family:'DM Serif Display',serif; font-size:18px;
+  font-style:italic; color:rgba(245,240,232,.55);
+  margin-top:16px; line-height:1.6; max-width:520px;
+}
+.mast-links {
+  display:flex; flex-direction:column; gap:8px; align-items:flex-end;
+}
+.mast-link {
+  font-family:'IBM Plex Mono',monospace; font-size:10px;
+  letter-spacing:.1em; text-transform:uppercase;
+  color:rgba(245,240,232,.45); text-decoration:none;
+  border:1px solid rgba(255,255,255,.1); padding:6px 14px;
+  transition:all .18s;
+}
+.mast-link:hover { background:var(--red); border-color:var(--red); color:white; }
+.mast-strip {
+  background:var(--red); padding:11px 52px;
+  font-family:'IBM Plex Mono',monospace; font-size:10px;
+  letter-spacing:.18em; text-transform:uppercase; color:white;
+  display:flex; gap:40px;
+}
+.mast-strip span { opacity:.8; }
+.mast-strip strong { opacity:1; }
+
+/* ── SECTION ELEMENTS ── */
+hr.rule { border:none; border-top:var(--rule); margin:0; }
+section { padding:80px 52px; max-width:1280px; margin:0 auto; }
+
+.section-tag {
+  font-family:'IBM Plex Mono',monospace; font-size:10px;
+  letter-spacing:.22em; text-transform:uppercase; color:var(--red);
+  margin-bottom:20px; display:flex; align-items:center; gap:10px;
+}
+.section-tag::after { content:''; width:36px; height:1px; background:var(--red); display:inline-block; }
+
+h2 {
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(32px,4vw,52px); line-height:1.05; margin-bottom:18px;
+}
+h2 em { color:var(--red); font-style:italic; }
+
+.lead {
+  font-size:16px; line-height:1.9; color:var(--dim);
+  max-width:680px; font-weight:300; margin-bottom:52px;
+  font-family:'DM Serif Display',serif; font-style:italic;
+}
+
+/* ── PAPER CARDS ── */
+.paper-stack { display:flex; flex-direction:column; gap:3px; }
+
+.paper-card {
+  display:grid; grid-template-columns:120px 1fr 1fr 220px;
+  border:var(--rule); background:var(--paper);
+  transition:background .15s; text-decoration:none; color:var(--ink);
+  overflow:hidden;
+}
+.paper-card:hover { background:var(--cream); }
+
+.paper-num {
+  padding:36px 24px;
+  border-right:var(--rule);
+  background:var(--ink); color:var(--paper);
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:space-between;
+}
+.pn-n {
+  font-family:'Bebas Neue',sans-serif; font-size:64px;
+  line-height:1; letter-spacing:.02em;
+}
+.p1 .pn-n { color:var(--red); }
+.p2 .pn-n { color:#60a5fa; }
+.p3 .pn-n { color:#fbbf24; }
+.pn-label {
+  font-family:'IBM Plex Mono',monospace; font-size:8px;
+  letter-spacing:.15em; text-transform:uppercase;
+  color:rgba(245,240,232,.35); writing-mode:vertical-rl;
+  transform:rotate(180deg); margin-top:8px;
+}
+
+.paper-body { padding:32px 28px; border-right:var(--rule); }
+.paper-venue {
+  font-family:'IBM Plex Mono',monospace; font-size:9px;
+  letter-spacing:.18em; text-transform:uppercase; color:var(--red);
+  margin-bottom:10px;
+}
+.p2 .paper-venue { color:var(--blue); }
+.p3 .paper-venue { color:var(--amber); }
+.paper-title {
+  font-family:'DM Serif Display',serif; font-size:22px;
+  font-weight:400; line-height:1.2; margin-bottom:10px;
+}
+.paper-subtitle {
+  font-family:'DM Serif Display',serif; font-style:italic;
+  font-size:14px; color:var(--dim); line-height:1.7; margin-bottom:16px;
+}
+.paper-rq {
+  font-family:'IBM Plex Mono',monospace; font-size:10px;
+  line-height:1.65; color:var(--dim); letter-spacing:.02em;
+  padding:10px 12px; border-left:2px solid var(--red);
+  background:rgba(0,0,0,.03);
+}
+.p2 .paper-rq { border-color:var(--blue); }
+.p3 .paper-rq { border-color:var(--amber); }
+
+.paper-findings { padding:32px 28px; border-right:var(--rule); }
+.pf-label {
+  font-family:'IBM Plex Mono',monospace; font-size:9px;
+  letter-spacing:.18em; text-transform:uppercase; color:var(--dim);
+  margin-bottom:12px;
+}
+.finding {
+  display:flex; gap:10px; margin-bottom:10px;
+  padding-bottom:10px; border-bottom:1px solid var(--cream);
+  align-items:flex-start; font-size:13px; line-height:1.65; color:var(--dim);
+}
+.finding:last-child { border-bottom:none; margin-bottom:0; padding-bottom:0; }
+.finding-tag {
+  font-family:'IBM Plex Mono',monospace; font-size:8.5px;
+  padding:2px 7px; flex-shrink:0; margin-top:2px;
+  background:var(--red); color:white; letter-spacing:.06em;
+}
+.p2 .finding-tag { background:var(--blue); }
+.p3 .finding-tag { background:var(--amber); }
+
+.paper-meta { padding:32px 24px; display:flex; flex-direction:column; justify-content:space-between; }
+.meta-row {
+  margin-bottom:12px; padding-bottom:12px;
+  border-bottom:1px solid var(--cream);
+}
+.meta-row:last-of-type { border-bottom:none; margin-bottom:0; }
+.meta-key {
+  font-family:'IBM Plex Mono',monospace; font-size:8.5px;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--dim);
+  margin-bottom:3px;
+}
+.meta-val { font-size:13px; line-height:1.55; }
+.meta-val code {
+  font-family:'IBM Plex Mono',monospace; font-size:11px;
+  background:var(--cream); padding:2px 6px; display:inline-block;
+  margin-top:2px;
+}
+.status-badge {
+  display:inline-block; padding:4px 10px;
+  font-family:'IBM Plex Mono',monospace; font-size:8.5px;
+  letter-spacing:.1em; text-transform:uppercase;
+}
+.status-ready { background:var(--teal); color:white; }
+.status-arxiv { background:var(--ink); color:white; }
+
+/* ── SKILLS / ABSTRACT SECTION ── */
+.about-grid {
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:3px; background:var(--ink); margin-top:52px;
+}
+.about-card {
+  background:var(--ink); color:var(--paper);
+  padding:36px 32px; border:1px solid rgba(255,255,255,.08);
+  transition:background .18s;
+}
+.about-card:hover { background:#1a1a1a; }
+.ac-label {
+  font-family:'IBM Plex Mono',monospace; font-size:9px;
+  letter-spacing:.18em; text-transform:uppercase;
+  color:var(--red); margin-bottom:12px;
+}
+.ac-title {
+  font-family:'DM Serif Display',serif; font-size:22px;
+  margin-bottom:10px;
+}
+.ac-body { font-size:13.5px; line-height:1.75; color:rgba(245,240,232,.6); }
+
+/* ── HOW TO REPRODUCE ── */
+.repro-grid {
+  display:grid; grid-template-columns:repeat(3,1fr);
+  border:var(--rule); margin-top:48px;
+}
+.repro-step {
+  padding:32px 28px; border-right:var(--rule);
+  position:relative;
+}
+.repro-step:last-child { border-right:none; }
+.step-n {
+  font-family:'Bebas Neue',sans-serif; font-size:56px;
+  color:rgba(0,0,0,.06); position:absolute; top:16px; right:20px;
+}
+.step-label {
+  font-family:'IBM Plex Mono',monospace; font-size:9px;
+  letter-spacing:.18em; text-transform:uppercase; color:var(--red);
+  margin-bottom:10px;
+}
+.step-title {
+  font-family:'DM Serif Display',serif; font-size:20px; margin-bottom:8px;
+}
+.step-body { font-size:13px; line-height:1.7; color:var(--dim); }
+.step-body code {
+  display:block; font-family:'IBM Plex Mono',monospace; font-size:11px;
+  background:var(--cream); padding:8px 12px; margin-top:10px;
+  line-height:1.6; white-space:pre;
+}
+
+/* ── TIMELINE ── */
+.timeline { margin-top:52px; display:flex; flex-direction:column; gap:2px; }
+.tl-item {
+  display:grid; grid-template-columns:180px 1fr;
+  border:var(--rule); overflow:hidden;
+}
+.tl-date {
+  padding:20px 24px; background:var(--ink); color:var(--paper);
+  font-family:'IBM Plex Mono',monospace; font-size:11px;
+  letter-spacing:.06em; display:flex; flex-direction:column;
+  justify-content:center;
+}
+.tl-date strong { font-size:14px; display:block; margin-bottom:2px; }
+.tl-body { padding:20px 24px; }
+.tl-title { font-family:'DM Serif Display',serif; font-size:17px; margin-bottom:4px; }
+.tl-desc { font-size:13px; color:var(--dim); line-height:1.6; }
+.tl-item.done .tl-date { background:var(--teal); }
+.tl-item.next .tl-date { background:var(--red); }
+
+/* ── FOOTER ── */
+footer {
+  background:var(--ink); color:var(--paper);
+  padding:40px 52px;
+  display:flex; justify-content:space-between; align-items:center;
+  border-top:4px solid var(--red);
+}
+.footer-l { font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:.06em; color:rgba(245,240,232,.3); line-height:2; }
+.footer-r { font-family:'Bebas Neue',sans-serif; font-size:28px; letter-spacing:.04em; color:rgba(245,240,232,.08); }
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .paper-card { grid-template-columns:80px 1fr; }
+  .paper-findings, .paper-meta { display:none; }
+  .mast-main { grid-template-columns:1fr; }
+  .mast-links { align-items:flex-start; flex-direction:row; flex-wrap:wrap; }
+  .about-grid { grid-template-columns:1fr; }
+  .repro-grid { grid-template-columns:1fr; }
+  .repro-step { border-right:none; border-bottom:var(--rule); }
+  .tl-item { grid-template-columns:1fr; }
+  nav,section,footer,.mast-top,.mast-main,.mast-strip { padding-left:24px; padding-right:24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <div class="mast-top">
+    <span>Henry Fan · ML Research · San Jose State University</span>
+    <span>github.com/HenryFan97/henry-fan-research</span>
+    <span>3 Papers · All CPU · All Reproducible</span>
+  </div>
+  <div class="mast-main">
+    <div>
+      <div class="mast-label">Research Portfolio · CS PhD Track</div>
+      <div class="mast-name">Henry<br><span>Fan.</span></div>
+      <p class="mast-title">
+        Machine learning research focused on reproducibility, efficiency, and accessible education. Three papers, all experiments reproducible on a laptop CPU in under 12 minutes.
+      </p>
+    </div>
+    <div class="mast-links">
+      <a class="mast-link" href="https://github.com/HenryFan97/henry-fan-research" target="_blank">GitHub Repo →</a>
+      <a class="mast-link" href="https://fansofhenry.github.io/ml_dl_ai_specialization/" target="_blank">Course Site →</a>
+      <a class="mast-link" href="mailto:henry.fan@sjsu.edu">Email →</a>
+    </div>
+  </div>
+  <div class="mast-strip">
+    <span>Focus: <strong>Reproducible ML · CPU Efficiency · Equitable Education</strong></span>
+    <span>Status: <strong>3 Papers Ready for arXiv Submission</strong></span>
+    <span>Runtime: <strong>&lt; 12 min · No GPU · No Cloud</strong></span>
+  </div>
+</header>
+
+<hr class="rule">
+
+<!-- PAPERS -->
+<section>
+  <div class="section-tag">Research Papers</div>
+  <h2>Three papers.<br><em>All reproducible.</em></h2>
+  <p class="lead">Each paper starts from a concrete research question, runs controlled experiments with fixed random seeds, produces publication-quality figures, and releases all code. Target venues are NeurIPS and ICLR workshops — realistic first publications for independent researchers.</p>
+
+  <div class="paper-stack">
+
+    <!-- Paper 1 -->
+    <div class="paper-card p1">
+      <div class="paper-num p1">
+        <div class="pn-n">1</div>
+        <div class="pn-label">Empirical · Benchmark</div>
+      </div>
+      <div class="paper-body">
+        <div class="paper-venue">arXiv cs.LG · NeurIPS ML Reproducibility Workshop</div>
+        <div class="paper-title">Classical vs. Deep Learning on Small Tabular Datasets</div>
+        <div class="paper-subtitle">A Reproducible Benchmark</div>
+        <div class="paper-rq">RQ: On small datasets (n &lt; 1000), does deep learning outperform classical ML in accuracy — and at what computational cost?</div>
+      </div>
+      <div class="paper-findings">
+        <div class="pf-label">Key Findings</div>
+        <div class="finding"><span class="finding-tag">F1</span>SVM and Logistic Regression match or beat MLP on all 4 datasets</div>
+        <div class="finding"><span class="finding-tag">F2</span>Classical methods are 10–100× faster to train on CPU</div>
+        <div class="finding"><span class="finding-tag">F3</span>Friedman test confirms significant differences on 3/4 datasets (p &lt; 0.05)</div>
+        <div class="finding"><span class="finding-tag">F4</span>Neural Network scores lowest accuracy on 3/4 datasets</div>
+      </div>
+      <div class="paper-meta">
+        <div>
+          <div class="meta-row">
+            <div class="meta-key">Status</div>
+            <div class="meta-val"><span class="status-badge status-ready">✓ Ready to Submit</span></div>
+          </div>
+          <div class="meta-row">
+            <div class="meta-key">Experiments</div>
+            <div class="meta-val">25 combos · 5-fold CV · 100 rows</div>
+          </div>
+          <div class="meta-row">
+            <div class="meta-key">Run It</div>
+            <div class="meta-val"><code>python run_benchmark.py --fast</code></div>
+          </div>
+        </div>
+        <div class="meta-row" style="margin-top:auto;">
+          <div class="meta-key">Figures</div>
+          <div class="meta-val">5 figures · accuracy heatmap · Pareto scatter · Friedman table</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Paper 2 -->
+    <div class="paper-card p2">
+      <div class="paper-num p2">
+        <div class="pn-n">2</div>
+        <div class="pn-label">Education · Framework</div>
+      </div>
+      <div class="paper-body">
+        <div class="paper-venue">arXiv cs.CY · ICLR Workshop on ML Education</div>
+        <div class="paper-title">Reproducible ML Curriculum Design for Self-Taught Engineers</div>
+        <div class="paper-subtitle">A Concept-Coverage and Pedagogical-Depth Study</div>
+        <div class="paper-rq">RQ: How do five widely-used ML curricula compare across concept coverage, scaffolding quality, reproducibility, and accessibility?</div>
+      </div>
+      <div class="paper-findings">
+        <div class="pf-label">Key Findings</div>
+        <div class="finding"><span class="finding-tag">F1</span>Project-first curricula score 0.40+ higher than lecture-first on composite metric</div>
+        <div class="finding"><span class="finding-tag">F2</span>No curriculum except this repo covers fairness auditing as a core concept</div>
+        <div class="finding"><span class="finding-tag">F3</span>There is no tradeoff between concept coverage and project-based ratio</div>
+        <div class="finding"><span class="finding-tag">F4</span>Accessibility &amp; reproducibility systematically underweighted across all curricula</div>
+      </div>
+      <div class="paper-meta">
+        <div>
+          <div class="meta-row">
+            <div class="meta-key">Status</div>
+            <div class="meta-val"><span class="status-badge status-ready">✓ Ready to Submit</span></div>
+          </div>
+          <div class="meta-row">
+            <div class="meta-key">Method</div>
+            <div class="meta-val">CQF framework · 24 concepts · Spearman scaffolding</div>
+          </div>
+          <div class="meta-row">
+            <div class="meta-key">Run It</div>
+            <div class="meta-val"><code>python run_analysis.py</code></div>
+          </div>
+        </div>
+        <div class="meta-row" style="margin-top:auto;">
+          <div class="meta-key">Figures</div>
+          <div class="meta-val">5 figures · radar chart · concept heatmap · composite bar</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Paper 3 -->
+    <div class="paper-card p3">
+      <div class="paper-num p3">
+        <div class="pn-n">3</div>
+        <div class="pn-label">Systems · Efficiency</div>
+      </div>
+      <div class="paper-body">
+        <div class="paper-venue">arXiv cs.LG · NeurIPS Workshop on Efficient ML</div>
+        <div class="paper-title">Training Machine Learning Models Without a GPU</div>
+        <div class="paper-subtitle">A Practical CPU Efficiency Benchmark</div>
+        <div class="paper-rq">RQ: Which ML models are most CPU-efficient, and how do parallelism, dataset size, and dimensionality affect training time on CPU-only hardware?</div>
+      </div>
+      <div class="paper-findings">
+        <div class="pf-label">Key Findings</div>
+        <div class="finding"><span class="finding-tag">F1</span>Logistic Regression: 143× higher CPU efficiency than MLP (143.5 vs 0.20 acc/s)</div>
+        <div class="finding"><span class="finding-tag">F2</span>n_jobs parallelism gives no speedup below n=10,000 due to thread overhead</div>
+        <div class="finding"><span class="finding-tag">F3</span>Linear models scale O(n^0.8); ensemble methods scale O(n^1.1)</div>
+        <div class="finding"><span class="finding-tag">F4</span>Competitive accuracy achievable on CPU for datasets up to n=50,000</div>
+      </div>
+      <div class="paper-meta">
+        <div>
+          <div class="meta-row">
+            <div class="meta-key">Status</div>
+            <div class="meta-val"><span class="status-badge status-ready">✓ Ready to Submit</span></div>
+          </div>
+          <div class="meta-row">
+            <div class="meta-key">Experiments</div>
+            <div class="meta-val">71 runs · 4 RQs · parallelism + scaling + efficiency + dims</div>
+          </div>
+          <div class="meta-row">
+            <div class="meta-key">Run It</div>
+            <div class="meta-val"><code>python run_experiments.py</code></div>
+          </div>
+        </div>
+        <div class="meta-row" style="margin-top:auto;">
+          <div class="meta-key">Figures</div>
+          <div class="meta-val">4 figures · log-log scaling · Pareto · efficiency bar</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ABOUT / RESEARCH FOCUS -->
+<section>
+  <div class="section-tag">Research Focus</div>
+  <h2>What ties these<br><em>three papers together.</em></h2>
+  <div class="about-grid">
+    <div class="about-card">
+      <div class="ac-label">Theme 1</div>
+      <div class="ac-title">Reproducibility</div>
+      <p class="ac-body">All three papers are fully reproducible: fixed seeds, public datasets, released code, and runtimes under 12 minutes on commodity hardware. This directly addresses the ML reproducibility crisis documented by Pineau et al. (2021).</p>
+    </div>
+    <div class="about-card">
+      <div class="ac-label">Theme 2</div>
+      <div class="ac-title">Resource Accessibility</div>
+      <p class="ac-body">Papers 1 and 3 specifically show what is achievable without GPU access. The framing challenges the assumption that meaningful ML research requires expensive hardware — relevant for students, independent researchers, and practitioners in the Global South.</p>
+    </div>
+    <div class="about-card">
+      <div class="ac-label">Theme 3</div>
+      <div class="ac-title">Equitable Education</div>
+      <p class="ac-body">Paper 2 documents — quantitatively — the absence of fairness and bias auditing from all major self-directed ML curricula. It proposes a framework that centers accessibility and ethics as first-class curriculum dimensions, not afterthoughts.</p>
+    </div>
+    <div class="about-card">
+      <div class="ac-label">Research Direction</div>
+      <div class="ac-title">PhD Focus</div>
+      <p class="ac-body">These papers establish a clear research identity: machine learning systems for resource-constrained and educationally underserved settings. Target PhD programs include UW, Georgia Tech, UC Santa Cruz, and UC Davis — all with faculty working at this intersection.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- HOW TO REPRODUCE -->
+<section>
+  <div class="section-tag">Reproducibility</div>
+  <h2>Run all three papers<br><em>in 12 minutes.</em></h2>
+  <p class="lead">No GPU. No cloud account. No paid tools. Every experiment in this repo runs on a standard laptop CPU purchased after 2015.</p>
+
+  <div class="repro-grid">
+    <div class="repro-step">
+      <div class="step-n">1</div>
+      <div class="step-label">Install</div>
+      <div class="step-title">One pip command</div>
+      <p class="step-body">All dependencies are standard scientific Python. No GPU libraries, no CUDA, no Docker.
+        <code>pip install -r requirements.txt</code>
+      </p>
+    </div>
+    <div class="repro-step">
+      <div class="step-n">2</div>
+      <div class="step-label">Run</div>
+      <div class="step-title">One script per paper</div>
+      <p class="step-body">Each paper has a single entrypoint script that runs all experiments and saves CSVs.
+        <code>python run_benchmark.py --fast
+python run_analysis.py
+python run_experiments.py</code>
+      </p>
+    </div>
+    <div class="repro-step">
+      <div class="step-n">3</div>
+      <div class="step-label">Figures</div>
+      <div class="step-title">Regenerate all plots</div>
+      <p class="step-body">All figures are generated programmatically from CSVs — no manual editing, no Photoshop.
+        <code>python analysis/visualize.py
+python analysis/stats.py</code>
+      </p>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- SUBMISSION TIMELINE -->
+<section>
+  <div class="section-tag">Publication Roadmap</div>
+  <h2>12-month plan to<br><em>three publications.</em></h2>
+
+  <div class="timeline">
+    <div class="tl-item done">
+      <div class="tl-date"><strong>Done</strong>All 3 Papers</div>
+      <div class="tl-body">
+        <div class="tl-title">Experiments complete · Drafts written · Code released</div>
+        <p class="tl-desc">All three experiments are run, all results CSVs are generated, all LaTeX drafts are written with real numbers filled in. GitHub repo is ready to push.</p>
+      </div>
+    </div>
+    <div class="tl-item next">
+      <div class="tl-date"><strong>Next</strong>Week 1–2</div>
+      <div class="tl-body">
+        <div class="tl-title">Submit Paper 1 to arXiv</div>
+        <p class="tl-desc">Compile LaTeX → upload PDF to arxiv.org/submit under cs.LG. Cross-list to stat.ML. Takes 24 hours to appear. Share the arXiv link on LinkedIn and email professors.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date"><strong>Month 1</strong></div>
+      <div class="tl-body">
+        <div class="tl-title">Submit Papers 2 and 3 to arXiv · Email 5 professors</div>
+        <p class="tl-desc">With 3 arXiv papers live, email 5 professors at target PhD programs using the template in the README. Attach arXiv links. Ask about research fit — not "do you have a spot."</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date"><strong>Month 2–3</strong></div>
+      <div class="tl-body">
+        <div class="tl-title">Submit Paper 1 to NeurIPS ML Reproducibility Workshop</div>
+        <p class="tl-desc">4-page workshop paper. Acceptance rates ~40%. A workshop acceptance is a peer-reviewed publication. Strong addition to PhD applications.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date"><strong>Month 4–6</strong></div>
+      <div class="tl-body">
+        <div class="tl-title">Submit Paper 2 to ICLR Workshop on ML Education</div>
+        <p class="tl-desc">Paper 2's curriculum framework is well-suited for the growing ML education research community. Target ICLR 2026 workshop track.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date"><strong>Month 6–12</strong></div>
+      <div class="tl-body">
+        <div class="tl-title">PhD Applications · Fall cycle</div>
+        <p class="tl-desc">Apply to 10–12 programs with 3 arXiv papers, 1 workshop paper, strong GitHub portfolio, and professor contacts already warmed up. Reach: UW, Georgia Tech. Match: UC Santa Cruz, UC Riverside, Northeastern. Safety: Oregon State, ASU, UT Dallas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-l">
+    Henry Fan · San Jose State University CS<br>
+    henry.fan@sjsu.edu · github.com/HenryFan97<br>
+    All research reproducible on CPU · No GPU required
+  </div>
+  <div class="footer-r">henry-fan-research</div>
+</footer>
+
+</body>
+</html>

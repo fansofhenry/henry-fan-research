@@ -1,0 +1,11 @@
+curriculum,concepts_covered,total_concepts,coverage_pct,project_ratio,prereq_depth,reproducibility,accessibility,portfolio_frac,weeks,delivery
+"This Repo
+(teach_cs)",24,24,1.0,0.75,2.1,0.95,0.9,1.0,18,project-first
+"fast.ai
+Practical DL",18,24,0.75,0.85,1.8,0.88,0.8,0.7,14,project-first
+"Ng Coursera
+ML Spec.",13,24,0.5417,0.35,3.2,0.6,0.7,0.2,16,lecture-first
+"Stanford
+CS229",16,24,0.6667,0.3,4.5,0.45,0.4,0.0,18,lecture-first
+"Kaggle
+Learn",16,24,0.6667,0.6,1.5,0.7,0.95,0.3,8,exercise-first

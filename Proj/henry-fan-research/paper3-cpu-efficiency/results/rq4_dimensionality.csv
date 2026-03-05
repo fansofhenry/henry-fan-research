@@ -1,0 +1,22 @@
+model,n_features,train_time_s,accuracy
+Random Forest,10,1.12032,0.948
+Logistic Regression,10,0.00566,0.753
+MLP,10,1.32949,0.958
+Random Forest,20,1.3631,0.938
+Logistic Regression,20,0.0077,0.832
+MLP,20,1.5359,0.974
+Random Forest,50,2.12777,0.917
+Logistic Regression,50,0.06472,0.814
+MLP,50,1.24564,0.967
+Random Forest,100,3.09664,0.879
+Logistic Regression,100,0.06789,0.814
+MLP,100,2.80728,0.961
+Random Forest,200,4.11837,0.851
+Logistic Regression,200,0.96668,0.815
+MLP,200,3.00681,0.933
+Random Forest,500,6.50998,0.781
+Logistic Regression,500,0.71422,0.816
+MLP,500,3.72374,0.884
+Random Forest,1000,9.59491,0.664
+Logistic Regression,1000,1.56797,0.767
+MLP,1000,5.51232,0.82

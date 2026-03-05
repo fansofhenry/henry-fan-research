@@ -1,0 +1,41 @@
+dataset,model_a,model_b,mean_a,mean_b,wilcoxon_stat,p_raw,p_bonferroni,significant,cohen_d,effect_size
+Iris,Logistic Regression,Random Forest,0.9533,0.96,0.0,1.0,1.0,False,-0.1413,negligible
+Iris,Logistic Regression,SVM (RBF),0.9533,0.96,0.0,1.0,1.0,False,-0.1413,negligible
+Iris,Logistic Regression,Gradient Boosting,0.9533,0.9467,0.0,1.0,1.0,False,0.1395,negligible
+Iris,Logistic Regression,Neural Network (MLP),0.9533,0.8133,0.0,0.0625,0.625,False,3.3748,large
+Iris,Random Forest,SVM (RBF),0.96,0.96,1.5,1.0,1.0,False,0.0,negligible
+Iris,Random Forest,Gradient Boosting,0.96,0.9467,0.0,0.5,1.0,False,0.302,small
+Iris,Random Forest,Neural Network (MLP),0.96,0.8133,0.0,0.0625,0.625,False,3.9367,large
+Iris,SVM (RBF),Gradient Boosting,0.96,0.9467,0.0,0.5,1.0,False,0.302,small
+Iris,SVM (RBF),Neural Network (MLP),0.96,0.8133,0.0,0.0625,0.625,False,3.9367,large
+Iris,Gradient Boosting,Neural Network (MLP),0.9467,0.8133,0.0,0.0625,0.625,False,3.5096,large
+Wine,Logistic Regression,Random Forest,0.9833,0.9775,1.0,1.0,1.0,False,0.2933,small
+Wine,Logistic Regression,SVM (RBF),0.9833,0.9833,1.0,1.0,1.0,False,0.0,negligible
+Wine,Logistic Regression,Gradient Boosting,0.9833,0.9717,1.0,1.0,1.0,False,0.4292,small
+Wine,Logistic Regression,Neural Network (MLP),0.9833,0.9152,0.0,0.125,1.0,False,1.7201,large
+Wine,Random Forest,SVM (RBF),0.9775,0.9833,1.0,1.0,1.0,False,-0.2408,small
+Wine,Random Forest,Gradient Boosting,0.9775,0.9717,0.0,1.0,1.0,False,0.1912,negligible
+Wine,Random Forest,Neural Network (MLP),0.9775,0.9152,0.0,0.125,1.0,False,1.4943,large
+Wine,SVM (RBF),Gradient Boosting,0.9833,0.9717,1.0,1.0,1.0,False,0.3815,small
+Wine,SVM (RBF),Neural Network (MLP),0.9833,0.9152,1.5,0.1875,1.0,False,1.6229,large
+Wine,Gradient Boosting,Neural Network (MLP),0.9717,0.9152,0.0,0.125,1.0,False,1.244,large
+Breast Cancer,Logistic Regression,Random Forest,0.9737,0.9543,0.0,0.0625,0.625,False,1.2571,large
+Breast Cancer,Logistic Regression,SVM (RBF),0.9737,0.9772,2.0,0.75,1.0,False,-0.1894,negligible
+Breast Cancer,Logistic Regression,Gradient Boosting,0.9737,0.9561,0.0,0.0625,0.625,False,1.005,large
+Breast Cancer,Logistic Regression,Neural Network (MLP),0.9737,0.9543,1.0,0.25,1.0,False,1.0026,large
+Breast Cancer,Random Forest,SVM (RBF),0.9543,0.9772,0.0,0.0625,0.625,False,-1.5085,large
+Breast Cancer,Random Forest,Gradient Boosting,0.9543,0.9561,2.0,0.75,1.0,False,-0.1249,negligible
+Breast Cancer,Random Forest,Neural Network (MLP),0.9543,0.9543,6.5,0.875,1.0,False,-0.0012,negligible
+Breast Cancer,SVM (RBF),Gradient Boosting,0.9772,0.9561,0.0,0.0625,0.625,False,1.2196,large
+Breast Cancer,SVM (RBF),Neural Network (MLP),0.9772,0.9543,1.0,0.125,1.0,False,1.1958,large
+Breast Cancer,Gradient Boosting,Neural Network (MLP),0.9561,0.9543,4.5,1.0,1.0,False,0.0953,negligible
+Titanic,Logistic Regression,Random Forest,0.7721,0.9057,0.0,0.0625,0.625,False,-5.6176,large
+Titanic,Logistic Regression,SVM (RBF),0.7721,0.908,0.0,0.0625,0.625,False,-5.5313,large
+Titanic,Logistic Regression,Gradient Boosting,0.7721,0.9057,0.0,0.0625,0.625,False,-5.2414,large
+Titanic,Logistic Regression,Neural Network (MLP),0.7721,0.8799,0.0,0.0625,0.625,False,-2.828,large
+Titanic,Random Forest,SVM (RBF),0.9057,0.908,3.0,0.625,1.0,False,-0.1169,negligible
+Titanic,Random Forest,Gradient Boosting,0.9057,0.9057,5.0,1.0,1.0,False,-0.001,negligible
+Titanic,Random Forest,Neural Network (MLP),0.9057,0.8799,3.0,0.3125,1.0,False,0.7367,medium
+Titanic,SVM (RBF),Gradient Boosting,0.908,0.9057,5.0,1.0,1.0,False,0.1049,negligible
+Titanic,SVM (RBF),Neural Network (MLP),0.908,0.8799,0.0,0.25,1.0,False,0.7896,medium
+Titanic,Gradient Boosting,Neural Network (MLP),0.9057,0.8799,3.0,0.3125,1.0,False,0.7132,medium

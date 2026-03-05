@@ -1,0 +1,9 @@
+model,n_jobs,train_time_s,accuracy,infer_ms
+Random Forest,1,2.4049,0.938,28.9445
+Random Forest,2,2.78626,0.938,173.4805
+Random Forest,4,3.08885,0.938,121.8508
+Random Forest,-1,2.78685,0.938,192.8997
+Logistic Regression,1,0.00936,0.832,0.9763
+Logistic Regression,2,0.00656,0.832,0.9832
+Logistic Regression,4,0.00628,0.832,0.8333
+Logistic Regression,-1,0.00551,0.832,0.8589

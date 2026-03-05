@@ -1,0 +1,11 @@
+curriculum,spearman_rho,p_value,n_concepts_placed,scaffolding_quality
+"This Repo
+(teach_cs)",0.6977,0.0002,24,good
+"fast.ai
+Practical DL",0.2658,0.2864,18,moderate
+"Ng Coursera
+ML Spec.",0.8828,0.0001,13,good
+"Stanford
+CS229",0.8838,0.0,16,good
+"Kaggle
+Learn",0.8249,0.0001,16,good

@@ -1,0 +1,7 @@
+model,train_time_s,accuracy,infer_ms,efficiency_acc_per_sec
+Random Forest,2.75815,0.938,135.5798,0.34
+Gradient Boosting,5.26727,0.934,3.9647,0.18
+Logistic Regression,0.00733,0.832,0.8456,113.51
+SGD Classifier,0.0127,0.819,0.7971,64.49
+MLP,4.70319,0.976,56.5546,0.21
+Linear SVM,0.00767,0.829,0.9283,108.08
