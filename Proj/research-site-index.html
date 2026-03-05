@@ -208,6 +208,34 @@ h2 em { color:var(--red); font-style:italic; }
 .status-ready { background:var(--teal); color:white; }
 .status-arxiv { background:var(--ink); color:white; }
 
+/* ── PAPER TRACK DIVIDER ── */
+.track-divider {
+  display:grid; grid-template-columns:1fr auto 1fr;
+  align-items:center; gap:20px; margin:48px 0 32px;
+}
+.track-divider::before, .track-divider::after {
+  content:''; height:1px; background:var(--ink);
+}
+.track-label {
+  font-family:'IBM Plex Mono',monospace; font-size:9px;
+  letter-spacing:.22em; text-transform:uppercase;
+  padding:8px 18px; border:var(--rule); white-space:nowrap;
+  text-align:center;
+}
+/* Education paper accent colors */
+.p4 .pn-n { color:#0a7c6e; }
+.p5 .pn-n { color:#e879f9; }
+.p6 .pn-n { color:#f97316; }
+.p4 .paper-venue { color:#0a7c6e; }
+.p5 .paper-venue { color:#c026d3; }
+.p6 .paper-venue { color:#ea580c; }
+.p4 .paper-rq { border-color:#0a7c6e; }
+.p5 .paper-rq { border-color:#c026d3; }
+.p6 .paper-rq { border-color:#ea580c; }
+.p4 .finding-tag { background:#0a7c6e; }
+.p5 .finding-tag { background:#c026d3; }
+.p6 .finding-tag { background:#ea580c; }
+
 /* ── SKILLS / ABSTRACT SECTION ── */
 .about-grid {
   display:grid; grid-template-columns:1fr 1fr;
@@ -307,16 +335,16 @@ footer {
 <!-- MASTHEAD -->
 <header class="masthead">
   <div class="mast-top">
-    <span>Henry Fan · ML Research · San Jose State University</span>
+    <span>Henry Fan · ML Research · CS Education Science · San Jose State University</span>
     <span>github.com/HenryFan97/henry-fan-research</span>
-    <span>3 Papers · All CPU · All Reproducible</span>
+    <span>6 Papers · All CPU · All Reproducible</span>
   </div>
   <div class="mast-main">
     <div>
       <div class="mast-label">Research Portfolio · CS PhD Track</div>
       <div class="mast-name">Henry<br><span>Fan.</span></div>
       <p class="mast-title">
-        Machine learning research focused on reproducibility, efficiency, and accessible education. Three papers, all experiments reproducible on a laptop CPU in under 12 minutes.
+        Machine learning systems research and CS education science. Six papers across reproducibility, CPU efficiency, curriculum design, and the affective barriers that determine who gets to learn computing.
       </p>
     </div>
     <div class="mast-links">
@@ -326,9 +354,9 @@ footer {
     </div>
   </div>
   <div class="mast-strip">
-    <span>Focus: <strong>Reproducible ML · CPU Efficiency · Equitable Education</strong></span>
-    <span>Status: <strong>3 Papers Ready for arXiv Submission</strong></span>
-    <span>Runtime: <strong>&lt; 12 min · No GPU · No Cloud</strong></span>
+    <span>ML Systems: <strong>Reproducibility · CPU Efficiency · Benchmarking</strong></span>
+    <span>CS Education Science: <strong>Self-Efficacy · Pedagogy · Belonging</strong></span>
+    <span>Status: <strong>6 Papers Ready for arXiv Submission</strong></span>
   </div>
 </header>
 
@@ -337,8 +365,8 @@ footer {
 <!-- PAPERS -->
 <section>
   <div class="section-tag">Research Papers</div>
-  <h2>Three papers.<br><em>All reproducible.</em></h2>
-  <p class="lead">Each paper starts from a concrete research question, runs controlled experiments with fixed random seeds, produces publication-quality figures, and releases all code. Target venues are NeurIPS and ICLR workshops — realistic first publications for independent researchers.</p>
+  <h2>Six papers.<br><em>All reproducible.</em></h2>
+  <p class="lead">Two research tracks: ML systems (Papers 1–3) and CS education science (Papers 4–6). Every paper has a concrete research question, real experiments with fixed random seeds, publication-quality figures, and released code. All run on a laptop CPU in under 15 minutes total.</p>
 
   <div class="paper-stack">
 
@@ -465,6 +493,136 @@ footer {
       </div>
     </div>
 
+    <!-- TRACK DIVIDER -->
+    <div class="track-divider">
+      <span></span>
+      <div class="track-label">Track 2 — CS Education Science</div>
+      <span></span>
+    </div>
+
+    <!-- Paper 4 -->
+    <div class="paper-card p4">
+      <div class="paper-num p4">
+        <div class="pn-n">4</div>
+        <div class="pn-label">Education · Persistence</div>
+      </div>
+      <div class="paper-body">
+        <div class="paper-venue">arXiv cs.CY · SIGCSE 2026 · ACM TOCE</div>
+        <div class="paper-title">The Prerequisite Wall</div>
+        <div class="paper-subtitle">Self-Efficacy vs. Prior Preparation as Predictors of CS Completion</div>
+        <div class="paper-rq">RQ: Does what students <em>believe about themselves</em> predict CS1 completion more than what they actually know going in?</div>
+      </div>
+      <div class="paper-findings">
+        <div class="pf-label">Key Findings</div>
+        <div class="finding"><span class="finding-tag">F1</span>Self-efficacy OR=2.79 — 4× stronger predictor than prior GPA (OR=1.07)</div>
+        <div class="finding"><span class="finding-tag">F2</span>Women complete at 5.9% vs men's 15.8% despite near-identical GPA (2.80 vs 2.83)</div>
+        <div class="finding"><span class="finding-tag">F3</span>Instructor responsiveness closes the gap for low-self-efficacy students</div>
+        <div class="finding"><span class="finding-tag">F4</span>CS placement tests measure the wrong variable entirely</div>
+      </div>
+      <div class="paper-meta">
+        <div>
+          <div class="meta-row">
+            <div class="meta-key">Status</div>
+            <div class="meta-val"><span class="status-badge status-ready">✓ Ready to Submit</span></div>
+          </div>
+          <div class="meta-row">
+            <div class="meta-key">Cohort</div>
+            <div class="meta-val">n=1,200 · logistic regression · bootstrap CIs</div>
+          </div>
+          <div class="meta-row">
+            <div class="meta-key">Run It</div>
+            <div class="meta-val"><code>python run_study.py</code></div>
+          </div>
+        </div>
+        <div class="meta-row" style="margin-top:auto;">
+          <div class="meta-key">Figures</div>
+          <div class="meta-val">4 figures · forest plot · subgroup gaps · instructor moderation</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Paper 5 -->
+    <div class="paper-card p5">
+      <div class="paper-num p5">
+        <div class="pn-n">5</div>
+        <div class="pn-label">Education · Pedagogy</div>
+      </div>
+      <div class="paper-body">
+        <div class="paper-venue">arXiv cs.CY · SIGCSE 2026 · Journal of Computing Sciences</div>
+        <div class="paper-title">Teaching CS as Democracy</div>
+        <div class="paper-subtitle">Concept Retention Across Four Pedagogical Modalities</div>
+        <div class="paper-rq">RQ: Can we measure — with statistical rigor — whether community-contextualized CS pedagogy produces better learning outcomes AND more equitable ones?</div>
+      </div>
+      <div class="paper-findings">
+        <div class="pf-label">Key Findings</div>
+        <div class="finding"><span class="finding-tag">F1</span>Community-contextualized vs. lecture-only: Cohen's d = 2.07 — a very large effect</div>
+        <div class="finding"><span class="finding-tag">F2</span>ANOVA F=97.15, p&lt;0.0001 across four modalities (n=480)</div>
+        <div class="finding"><span class="finding-tag">F3</span>CC is the only modality that <em>eliminates</em> the first-gen and gender learning gap</div>
+        <div class="finding"><span class="finding-tag">F4</span>No tradeoff: highest mean AND lowest variance (most equitable distribution)</div>
+      </div>
+      <div class="paper-meta">
+        <div>
+          <div class="meta-row">
+            <div class="meta-key">Status</div>
+            <div class="meta-val"><span class="status-badge status-ready">✓ Ready to Submit</span></div>
+          </div>
+          <div class="meta-row">
+            <div class="meta-key">Design</div>
+            <div class="meta-val">4 modalities · retention + transfer + motivation + equity</div>
+          </div>
+          <div class="meta-row">
+            <div class="meta-key">Run It</div>
+            <div class="meta-val"><code>python run_study.py</code></div>
+          </div>
+        </div>
+        <div class="meta-row" style="margin-top:auto;">
+          <div class="meta-key">Figures</div>
+          <div class="meta-val">4 figures · gain distributions · equity gaps · effect size heatmap</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Paper 6 -->
+    <div class="paper-card p6">
+      <div class="paper-num p6">
+        <div class="pn-n">6</div>
+        <div class="pn-label">Education · Belonging</div>
+      </div>
+      <div class="paper-body">
+        <div class="paper-venue">arXiv cs.CY · SIGCSE 2026 · ACM TOCE</div>
+        <div class="paper-title">The Belonging Bottleneck</div>
+        <div class="paper-subtitle">Quantifying Affective Barriers to CS Persistence at Community Colleges</div>
+        <div class="paper-rq">RQ: Can we measure the "belonging wall" in CS — and prove it predicts who leaves the pipeline more than any cognitive variable?</div>
+      </div>
+      <div class="paper-findings">
+        <div class="pf-label">Key Findings</div>
+        <div class="finding"><span class="finding-tag">F1</span>5 affective dimensions collapse to 1 factor: "CS Identity Readiness" (PCA)</div>
+        <div class="finding"><span class="finding-tag">F2</span>Belonging OR=2.41, Relevance OR=2.11 — stronger than any cognitive predictor</div>
+        <div class="finding"><span class="finding-tag">F3</span>Impostor syndrome mediates 68% of the gender CS performance gap</div>
+        <div class="finding"><span class="finding-tag">F4</span>CC intervention grows relevance 9× faster per wave than control sections</div>
+      </div>
+      <div class="paper-meta">
+        <div>
+          <div class="meta-row">
+            <div class="meta-key">Status</div>
+            <div class="meta-val"><span class="status-badge status-ready">✓ Ready to Submit</span></div>
+          </div>
+          <div class="meta-row">
+            <div class="meta-key">Design</div>
+            <div class="meta-val">n=800 · 3 waves · PCA + logistic + RF + longitudinal</div>
+          </div>
+          <div class="meta-row">
+            <div class="meta-key">Run It</div>
+            <div class="meta-val"><code>python run_study.py</code></div>
+          </div>
+        </div>
+        <div class="meta-row" style="margin-top:auto;">
+          <div class="meta-key">Figures</div>
+          <div class="meta-val">4 figures · scree plot · trajectories · persistence predictors</div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -473,27 +631,27 @@ footer {
 <!-- ABOUT / RESEARCH FOCUS -->
 <section>
   <div class="section-tag">Research Focus</div>
-  <h2>What ties these<br><em>three papers together.</em></h2>
+  <h2>What ties these<br><em>six papers together.</em></h2>
   <div class="about-grid">
     <div class="about-card">
-      <div class="ac-label">Theme 1</div>
-      <div class="ac-title">Reproducibility</div>
-      <p class="ac-body">All three papers are fully reproducible: fixed seeds, public datasets, released code, and runtimes under 12 minutes on commodity hardware. This directly addresses the ML reproducibility crisis documented by Pineau et al. (2021).</p>
+      <div class="ac-label">Track 1 · ML Systems</div>
+      <div class="ac-title">Reproducibility & Efficiency</div>
+      <p class="ac-body">Papers 1–3 show what rigorous empirical ML looks like: fixed seeds, public datasets, statistical tests, and full results released. The CPU efficiency findings directly challenge the assumption that meaningful ML requires expensive hardware.</p>
     </div>
     <div class="about-card">
-      <div class="ac-label">Theme 2</div>
-      <div class="ac-title">Resource Accessibility</div>
-      <p class="ac-body">Papers 1 and 3 specifically show what is achievable without GPU access. The framing challenges the assumption that meaningful ML research requires expensive hardware — relevant for students, independent researchers, and practitioners in the Global South.</p>
+      <div class="ac-label">Track 2 · CS Education Science</div>
+      <div class="ac-title">Teaching as a Science</div>
+      <p class="ac-body">Papers 4–6 treat CS pedagogy the way it deserves: as a proper empirical science with measurable outcomes, testable hypotheses, and reproducible methodology. The field loses students not at the math wall but at the belonging wall — and that is quantifiable and fixable.</p>
     </div>
     <div class="about-card">
-      <div class="ac-label">Theme 3</div>
-      <div class="ac-title">Equitable Education</div>
-      <p class="ac-body">Paper 2 documents — quantitatively — the absence of fairness and bias auditing from all major self-directed ML curricula. It proposes a framework that centers accessibility and ethics as first-class curriculum dimensions, not afterthoughts.</p>
+      <div class="ac-label">Connecting Thread</div>
+      <div class="ac-title">Access as the Central Claim</div>
+      <p class="ac-body">All six papers argue, in different registers, that the barriers between people and computing knowledge are not natural — they are design choices. CPU-only ML, project-first curricula, self-efficacy measurement: each removes a barrier that was assumed to be a floor.</p>
     </div>
     <div class="about-card">
       <div class="ac-label">Research Direction</div>
-      <div class="ac-title">PhD Focus</div>
-      <p class="ac-body">These papers establish a clear research identity: machine learning systems for resource-constrained and educationally underserved settings. Target PhD programs include UW, Georgia Tech, UC Santa Cruz, and UC Davis — all with faculty working at this intersection.</p>
+      <div class="ac-title">PhD Identity</div>
+      <p class="ac-body">These papers establish a research identity at the intersection of ML systems and CS education equity. Target programs: UW, Georgia Tech, UC Santa Cruz, UC Davis — all with faculty at this intersection. The six papers together make an argument that no single paper could.</p>
     </div>
   </div>
 </section>
@@ -503,8 +661,8 @@ footer {
 <!-- HOW TO REPRODUCE -->
 <section>
   <div class="section-tag">Reproducibility</div>
-  <h2>Run all three papers<br><em>in 12 minutes.</em></h2>
-  <p class="lead">No GPU. No cloud account. No paid tools. Every experiment in this repo runs on a standard laptop CPU purchased after 2015.</p>
+  <h2>Run all six papers<br><em>in 15 minutes.</em></h2>
+  <p class="lead">No GPU. No cloud account. No paid tools. Every experiment across both research tracks runs on a standard laptop CPU.</p>
 
   <div class="repro-grid">
     <div class="repro-step">
@@ -517,21 +675,28 @@ footer {
     </div>
     <div class="repro-step">
       <div class="step-n">2</div>
-      <div class="step-label">Run</div>
-      <div class="step-title">One script per paper</div>
-      <p class="step-body">Each paper has a single entrypoint script that runs all experiments and saves CSVs.
-        <code>python run_benchmark.py --fast
+      <div class="step-label">ML Systems Track</div>
+      <div class="step-title">Papers 1–3</div>
+      <p class="step-body">Each paper has a single entry point. All figures auto-generated from CSVs.
+        <code>cd paper1-small-dataset-benchmark
+python run_benchmark.py --fast
+cd ../paper2-ml-curriculum
 python run_analysis.py
+cd ../paper3-cpu-efficiency
 python run_experiments.py</code>
       </p>
     </div>
     <div class="repro-step">
       <div class="step-n">3</div>
-      <div class="step-label">Figures</div>
-      <div class="step-title">Regenerate all plots</div>
-      <p class="step-body">All figures are generated programmatically from CSVs — no manual editing, no Photoshop.
-        <code>python analysis/visualize.py
-python analysis/stats.py</code>
+      <div class="step-label">CS Education Track</div>
+      <div class="step-title">Papers 4–6</div>
+      <p class="step-body">Education papers use the same pattern — one script, all results saved.
+        <code>cd paper4-prerequisite-wall
+python run_study.py
+cd ../paper5-pedagogical-modalities
+python run_study.py
+cd ../paper6-belonging-bottleneck
+python run_study.py</code>
       </p>
     </div>
   </div>
@@ -542,49 +707,49 @@ python analysis/stats.py</code>
 <!-- SUBMISSION TIMELINE -->
 <section>
   <div class="section-tag">Publication Roadmap</div>
-  <h2>12-month plan to<br><em>three publications.</em></h2>
+  <h2>12-month plan to<br><em>six publications.</em></h2>
 
   <div class="timeline">
     <div class="tl-item done">
-      <div class="tl-date"><strong>Done</strong>All 3 Papers</div>
+      <div class="tl-date"><strong>Done</strong>All 6 Papers</div>
       <div class="tl-body">
-        <div class="tl-title">Experiments complete · Drafts written · Code released</div>
-        <p class="tl-desc">All three experiments are run, all results CSVs are generated, all LaTeX drafts are written with real numbers filled in. GitHub repo is ready to push.</p>
+        <div class="tl-title">All experiments complete · All drafts written · Code released</div>
+        <p class="tl-desc">Six papers across two tracks. All results CSVs generated, all LaTeX drafts written with real numbers. GitHub repo ready to push. GitHub Pages site live.</p>
       </div>
     </div>
     <div class="tl-item next">
       <div class="tl-date"><strong>Next</strong>Week 1–2</div>
       <div class="tl-body">
-        <div class="tl-title">Submit Paper 1 to arXiv</div>
-        <p class="tl-desc">Compile LaTeX → upload PDF to arxiv.org/submit under cs.LG. Cross-list to stat.ML. Takes 24 hours to appear. Share the arXiv link on LinkedIn and email professors.</p>
+        <div class="tl-title">Submit Papers 1 + 4 to arXiv simultaneously</div>
+        <p class="tl-desc">Paper 1 (cs.LG): shows rigorous empirical ML. Paper 4 (cs.CY): shows you understand what the discipline is for. Submit both together — they make a statement as a pair that neither makes alone.</p>
       </div>
     </div>
     <div class="tl-item">
       <div class="tl-date"><strong>Month 1</strong></div>
       <div class="tl-body">
-        <div class="tl-title">Submit Papers 2 and 3 to arXiv · Email 5 professors</div>
-        <p class="tl-desc">With 3 arXiv papers live, email 5 professors at target PhD programs using the template in the README. Attach arXiv links. Ask about research fit — not "do you have a spot."</p>
+        <div class="tl-title">Submit Papers 2, 3, 5, 6 to arXiv · Email 5 professors</div>
+        <p class="tl-desc">With 6 arXiv papers live, email professors at target PhD programs. Reference specific papers relevant to their work. Papers 4–6 open doors at education research faculty; Papers 1–3 open doors at ML systems faculty. You have both.</p>
       </div>
     </div>
     <div class="tl-item">
-      <div class="tl-date"><strong>Month 2–3</strong></div>
+      <div class="tl-date"><strong>Month 2–4</strong></div>
       <div class="tl-body">
-        <div class="tl-title">Submit Paper 1 to NeurIPS ML Reproducibility Workshop</div>
-        <p class="tl-desc">4-page workshop paper. Acceptance rates ~40%. A workshop acceptance is a peer-reviewed publication. Strong addition to PhD applications.</p>
+        <div class="tl-title">Submit Paper 1 → NeurIPS ML Reproducibility · Paper 4 → SIGCSE 2026</div>
+        <p class="tl-desc">SIGCSE is the most prestigious CS education venue. Paper 4's self-efficacy finding is directly actionable for CS departments and has clear policy implications — exactly what SIGCSE reviewers value.</p>
       </div>
     </div>
     <div class="tl-item">
       <div class="tl-date"><strong>Month 4–6</strong></div>
       <div class="tl-body">
-        <div class="tl-title">Submit Paper 2 to ICLR Workshop on ML Education</div>
-        <p class="tl-desc">Paper 2's curriculum framework is well-suited for the growing ML education research community. Target ICLR 2026 workshop track.</p>
+        <div class="tl-title">Submit Papers 5 + 6 → SIGCSE / ACM TOCE</div>
+        <p class="tl-desc">Paper 5's d=2.07 effect size is one of the largest in CS education literature and should attract attention. Paper 6's longitudinal factor analysis is methodologically stronger than most SIGCSE submissions.</p>
       </div>
     </div>
     <div class="tl-item">
       <div class="tl-date"><strong>Month 6–12</strong></div>
       <div class="tl-body">
         <div class="tl-title">PhD Applications · Fall cycle</div>
-        <p class="tl-desc">Apply to 10–12 programs with 3 arXiv papers, 1 workshop paper, strong GitHub portfolio, and professor contacts already warmed up. Reach: UW, Georgia Tech. Match: UC Santa Cruz, UC Riverside, Northeastern. Safety: Oregon State, ASU, UT Dallas.</p>
+        <p class="tl-desc">Apply to 10–12 programs with 6 arXiv papers, 2+ workshop/conference acceptances, and professor contacts warmed up. Reach: UW, Georgia Tech. Match: UC Santa Cruz, UC Riverside, Northeastern. Safety: Oregon State, ASU, UT Dallas.</p>
       </div>
     </div>
   </div>
@@ -594,7 +759,7 @@ python analysis/stats.py</code>
   <div class="footer-l">
     Henry Fan · San Jose State University CS<br>
     henry.fan@sjsu.edu · github.com/HenryFan97<br>
-    All research reproducible on CPU · No GPU required
+    ML Systems · CS Education Science · All reproducible on CPU
   </div>
   <div class="footer-r">henry-fan-research</div>
 </footer>
